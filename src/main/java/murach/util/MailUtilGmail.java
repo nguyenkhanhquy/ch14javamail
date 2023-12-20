@@ -2,8 +2,14 @@ package murach.util;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Properties;
-import javax.mail.*;
-import javax.mail.internet.*;
+
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.Message;
+import javax.mail.Address;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 public class MailUtilGmail {
 
@@ -35,8 +41,11 @@ public class MailUtilGmail {
 		message.setRecipient(Message.RecipientType.TO, toAddress);
 
 		// 4 - send the message
+		String username = System.getenv("GMAIL_USERNAME");
+		String password = System.getenv("GMAIL_PASSWORD");
+		
 		Transport transport = session.getTransport();
-		transport.connect("shop.javamail@gmail.com", "cgyejmltoyhkyzzs");
+		transport.connect(username, password);
 		transport.sendMessage(message, message.getAllRecipients());
 		transport.close();
 	}

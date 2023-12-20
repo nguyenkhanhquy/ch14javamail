@@ -22,7 +22,7 @@ public class User implements Serializable {
 
     @Id
     @Column(name = "UserId")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getUserId() {
         return userId;
     }
